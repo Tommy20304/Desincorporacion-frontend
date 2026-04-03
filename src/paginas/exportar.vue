@@ -16,6 +16,11 @@ const planillaSeleccionada = ref(null);
 onMounted(async () => {
   await store.leer('plantilla/info');
   listaPlanillas.value  = store.respuesta.datos;
+
+  //en los atributos imagen, se agrega la url del backend para que se pueda mostrar la imagen
+  for(const [nombre, valores] of Object.entries(listaPlanillas.value)){
+    listaPlanillas.value[nombre].imagen = `${store.urlBackend}/${valores.imagen}`;
+  }
   
 })
 
@@ -79,7 +84,7 @@ onUnmounted(() => {
         @click="abrirModal(valores)"
       >
         <div class="imagen-wrapper">
-          <img :src="`${store.urlBackend}/${valores.imagen}`" :alt="nombre">
+          <img :src="valores.imagen`" :alt="nombre">
           <div class="overlay-simple">Ver detalles</div>
         </div>
         <div class="info-basica">
