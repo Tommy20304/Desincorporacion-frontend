@@ -78,8 +78,8 @@ onMounted(async () => {
     datosPlantillas.value = store.respuesta.datos;
 
     //en los atributos imagen, se agrega la url del backend para que se pueda mostrar la imagen
-    for(const [nombre, valores] of Object.entries(listaPlanillas.value)){
-      listaPlanillas.value[nombre].imagen = `${store.urlBackend}/imagenes/${valores.imagen}`;
+    for(const [nombre, valores] of Object.entries(datosPlantillas.value)){
+      datosPlantillas.value[nombre].imagen = `${store.urlBackend}/imagenes/${valores.imagen}`;
     }
 })
 
