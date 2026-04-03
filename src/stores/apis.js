@@ -5,7 +5,7 @@ export const api = defineStore("api", () => {
     const token = localStorage.getItem("token");
     const datos = ref();
     const respuesta = ref();
-    const urlBackend = "http://localhost:3000";
+    const urlBackend = "https://desincorporacion-back.onrender.com";
     
     //se realiza una peticion sin token
     const mandarSinToken = async (body, ruta) => {
