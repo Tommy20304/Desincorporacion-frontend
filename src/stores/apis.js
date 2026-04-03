@@ -118,6 +118,7 @@ export const api = defineStore("api", () => {
 
     return {
         datos,
+        urlBackend,
         mandarArchivo,
         mandarJson,
         recibirArchivo,
