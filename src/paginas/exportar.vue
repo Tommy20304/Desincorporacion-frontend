@@ -79,7 +79,7 @@ onUnmounted(() => {
         @click="abrirModal(valores)"
       >
         <div class="imagen-wrapper">
-          <img :src="valores.imagen" :alt="nombre">
+          <img :src="`${store.urlBackend}/${valores.imagen}`" :alt="nombre">
           <div class="overlay-simple">Ver detalles</div>
         </div>
         <div class="info-basica">
