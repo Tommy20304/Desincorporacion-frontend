@@ -104,23 +104,23 @@ const determinarError = async () => {
 
     await store.mandarArchivo(formData, 'crear-clave/determinar-errores');
 
+    //se quita el procesando
+    procesar.value = false;
+
     //se comprueba los errores graves que detienen el proceso
     if(!store.respuesta.mensaje){
       return manejarNotificaciones.activarNotificacionError("hubo errores en el guardado");
     }
 
     if(store.respuesta.mensaje == 'no se encontro ningun dato'){
-      procesar.value = false;
        return manejarNotificaciones.activarNotificacionError("no se encontro ningun dato");
     }
 
     if(store.respuesta.ubicacionDiferente){
-        procesar.value = false;
         return manejarNotificaciones.activarNotificacionError("Existen ubicaciones distintas en los registros");
     }
    
     if (store.respuesta.claveExistente){
-      procesar.value = false;
       return manejarNotificaciones.activarNotificacionError("La clave ya existe");
     }
 
@@ -146,19 +146,21 @@ const determinarError = async () => {
 
 //se guarda
 async function guardar(){
-    //se hace las peticiones por partes, para evitar errores con archivos grandes
-    for(let row of datosEncontrados.value){
-        await store.mandarJson({datos:[row], clave: clave.value}, "crear-clave/agregar");
-    };
+   
+    //se activa el procesando
+    procesar.value = true;
+
+    //se hace la peticion
+    await store.mandarJson({datos:datosEncontrados.value, clave: clave.value}, "crear-clave/agregar");
     
+    //se quita el procesando
+    procesar.value = false;
+
     if(!store.respuesta.mensaje){
-        procesar.value = false;
         return manejarNotificaciones.activarNotificacionError("hubo errores en el guardado");
     }
     manejarNotificaciones.activarNotificacionExito("Se realizo el guardado correctamente");
 
-    //se quita el procesando
-    procesar.value = false;
     removeFile();
 }
 
