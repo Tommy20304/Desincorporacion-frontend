@@ -131,10 +131,11 @@ function devolverColumna(){
             </div>
             
             <div class="modal-info">
-              <span class="etiqueta">Excel Profesional</span>
+              
               <h2>{{ infoPlantilla.nombre }}</h2>
               <p class="descripcion">{{ infoPlantilla.descripcion }}</p>
-              
+              <p><span style="font-weight: bold;">Item Maximo:</span> {{ infoPlantilla.itemMaximo ? infoPlantilla.itemMaximo : 'No especificado' }}</p>
+
               <div class="caracteristicas">
                 <h4>Columnas que Posee:</h4>
                 <ul class="lista-horizontal">
@@ -210,7 +211,7 @@ function devolverColumna(){
 .modal-imagen img { width: 100%; height: 100%; object-fit: cover; }
 
 .modal-info {
-  padding: 30px;
+  padding: 0px 20px 20px 20px;
 }
 /* Estilos para la iteración horizontal */
 .lista-horizontal {
